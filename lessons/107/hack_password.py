@@ -8,7 +8,8 @@ def get_wordlist(url):
             wordlist = f.read().decode('utf-8').splitlines()
             return wordlist
     except Exception as e:
-        return f'failed to get wordlist: {e}'
+        print(f'failed to get wordlist: {e}')
+        exit(1)
 
 
 def hash(password):

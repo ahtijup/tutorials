@@ -1,3 +1,4 @@
+import csv
 import hashlib
 from urllib.request import urlopen
 
@@ -8,7 +9,21 @@ def get_wordlist(url):
             wordlist = f.read().decode('utf-8').splitlines()
             return wordlist
     except Exception as e:
-        return f'failed to get wordlist: {e}'
+        print(f'failed to get wordlist: {e}')
+        exit(1)
+
+
+def get_users(path):
+    try:
+        result = []
+        with open(path) as f:
+            reader = csv.DictReader(f, delimiter=',')
+            for row in reader:
+                result.append(dict(row))
+            return result
+    except Exception as e:
+        print(f'failed to get users: {e}')
+        exit(1)
 
 
 def hash(password):
@@ -25,12 +40,13 @@ def bruteforce(wordlist, password):
 
 if __name__ == '__main__':
     WORDLIST_URL = 'https://raw.githubusercontent.com/berzerk0/Probable-Wordlists/2df55facf06c7742f2038a8f6607ea9071596128/Real-Passwords/Top12Thousand-probable-v2.txt'
+    DATABASE_PATH = 'database.cvs'
 
     wordlist = get_wordlist(WORDLIST_URL)
     print(f'wordlist contains {len(wordlist)} items')
 
-    # password = bruteforce(wordlist, MY_PASSWORD)
-    # if password is not None:
-    #     print('your password is:', password)
-    # else:
-    #     print('your password is not in the wordlist')
+    users = get_users(DATABASE_PATH)
+    for user in users:
+        password = bruteforce(wordlist, user['password'])
+        if password is not None:
+            print(f'username: {user["username"]}, password: {password}')
