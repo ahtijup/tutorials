@@ -3,6 +3,11 @@ import hashlib
 from urllib.request import urlopen
 
 
+def hash(password):
+    result = hashlib.sha256(password.encode())
+    return result.hexdigest()
+
+
 def get_wordlist(url):
     try:
         with urlopen(url) as f:
@@ -24,11 +29,6 @@ def get_users(path):
     except Exception as e:
         print(f'failed to get users: {e}')
         exit(1)
-
-
-def hash(password):
-    result = hashlib.sha256(password.encode())
-    return result.hexdigest()
 
 
 def bruteforce(wordlist, password):
