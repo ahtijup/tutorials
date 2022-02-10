@@ -56,3 +56,6 @@ Passwords should ideally use specialised hashing functions like Argon2, BCrypt o
 These days, more and more systems use proper password storage algorithms such as Bcrypt, Scrypt or Argon2. See: How to securely [store] passwords? Those algorithms are no longer "vulnerable" to rainbow tables: since each hash is unique, even if the passwords are equal, rainbow tables no longer work.
 
 That's why rainbow tables are unpopular today. Even if something modern like Argon2 is not used, developers nowadays usually know that they should at least use a salt. That is already enough to make a rainbow table useless.
+
+
+
