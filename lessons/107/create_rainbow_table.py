@@ -22,7 +22,10 @@ def create_rainbow_table(wordlist_url, rainbow_table_path):
     wordlist = get_wordlist(wordlist_url)
     try:
         with open(rainbow_table_path, 'w') as f:
-            reader = csv.DictReader(f, delimiter=',')
+            writer = csv.writer(f, delimiter=',')
+            writer.writerow(['password', 'hash'])
+            for word in wordlist:
+                writer.writerow([word, hash(word)])
 
     except Exception as e:
         print(f'failed to create rainbow table: {e}')
