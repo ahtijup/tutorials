@@ -5,7 +5,6 @@ You can find tutorial [here]().
 - crack simple (my password) password and wordlist of 20 words
 - create list of passwords with usernames as a dictinary cvs and crack them using wordlist and single hash (Top12Thousand-probable-v2.txt) lists
 - create rainbow table with different hash functions as cvs (Top29Million-probable-v2.txt)
-- create postgress database locally, create 2 tables with passwords and rainbow table (Top109Million-probable-v2.txt)
 
 
 
