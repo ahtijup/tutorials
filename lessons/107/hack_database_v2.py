@@ -44,6 +44,15 @@ def get_rainbow_table(path):
         exit(1)
 
 
+def match_hash(users, rainbow_table):
+    for user in users:
+        password_hash = hash(user['password'])
+        for row in rainbow_table:
+            if password_hash == row['hash']:
+                print(
+                    f'username: {user["username"]}, password {row["password"]}')
+
+
 if __name__ == '__main__':
     WORDLIST_URL = 'https://raw.githubusercontent.com/berzerk0/Probable-Wordlists/2df55facf06c7742f2038a8f6607ea9071596128/Real-Passwords/Top12Thousand-probable-v2.txt'
     DATABASE_PATH = 'database.csv'
@@ -51,3 +60,4 @@ if __name__ == '__main__':
 
     users = get_users(DATABASE_PATH)
     rainbow_table = get_rainbow_table(RAINBOW_TABLE_PATH)
+    match_hash(users, rainbow_table)
