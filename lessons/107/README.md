@@ -12,7 +12,10 @@ https://workshops.hackclub.com/passwordcracker/
 https://github.com/berzerk0/Probable-Wordlists
 
 
-
+1. create hack_password.py
+2. create database.csv
+3. create hack_database.py
+4. create create_rainbow_table.py which will generate rainbow_table.csv
 
 
 
